@@ -19,7 +19,7 @@ $ sudo pacman -S sdl2_ttf
 Verifique onde as bibliotecas foram instaladas e coloque-as na pasta /usr/include/SDL2 junto com as outras bibliotecas do SDL. Provavelmente elas foram instaladas na pasta /usr/include.
 
 ### Configurações da IDE
-  Para compilar e rodar o programa utilizamos a IDE do Eclipse para C++. Para instalala rode o comando:
+  Para compilar e rodar o programa utilizamos a IDE do Eclipse para C++. Para instalar rode o comando:
 
 * Archlinux
 ```

@@ -1,55 +1,63 @@
-#include "CutScene1.h"
+/*********************************************************
+  * File: CutScene1.cpp
+  * Purpose: Implementation of the story line before opening
+	the game menu 
+*********************************************************/
 
+#include "CutScene1.h"
 #include <SDL_keycode.h>
 #include <iostream>
 
 #include "InputManager.h"
 
+#define IMG_CUTSCENE_0 "img/cut-scene-final/Cutscene_Final_0.png"
+#define IMG_CUTSCENE_1 "img/cut-scene-final/Cutscene_Final_1.png"
+#define IMG_CUTSCENE_2 "img/cut-scene-final/Cutscene_Final_2.png"
+#define IMG_CUTSCENE_3 "img/cut-scene-final/Cutscene_Final_3.png"
+#define IMG_BLANK "img/blank.png"
+
+#define AUDIO "audio/finalSong.ogg"
+
 const unsigned int NUMBER_FRAMES_ANIMATION = 4;
 const float FRAME_TIME_ANIMATION = 5;
 
-CutScene1::CutScene1() :
-		blank("img/blank.png"), sprite(
-				"img/cut-scene-final/Cutscene_Final_0.png"), timer(), song("audio/finalSong.ogg"){
+/*
+  Creator method, initialize the variables
+*/
+CutScene1::CutScene1(): blank(IMG_BLANK),
+                        sprite(IMG_CUTSCENE_0),
+                        timer(), song(AUDIO){
 
 	popRequested = false;
 	quitRequested = false;
 	frame = 0;
-
-	/*for (unsigned int i = 0; i < NUMBER_FRAMES_ANIMATION; i++) {
-	 std::stringstream sstm;
-	 sstm << "img/cut-scene-final/Cutscene_Final_" << i << ".png";
-	 std::string frameFile = sstm.str();
-
-	 selector.emplace_back(new Sprite(frameFile));
-	 }*/
-
 	showBlank = true;
-
 	song.Play(1);
 }
 
+/*
+  Destructor method, releases the alocated memory
+*/
 CutScene1::~CutScene1() {
 	song.Stop();
-	/*for (unsigned int i = 300; i < selector.size() - 1; i++) {
-		selector[i]->freeMe();
-	}
-	selector.clear();*/
-	sprite.Open("img/cut-scene-final/Cutscene_Final_0.png");
+	sprite.Open(IMG_CUTSCENE_0);
 	sprite.freeMe();
-	sprite.Open("img/cut-scene-final/Cutscene_Final_1.png");
+	sprite.Open(IMG_CUTSCENE_1);
 	sprite.freeMe();
-	sprite.Open("img/cut-scene-final/Cutscene_Final_2.png");
+	sprite.Open(IMG_CUTSCENE_2);
 	sprite.freeMe();
-	sprite.Open("img/cut-scene-final/Cutscene_Final_3.png");
+	sprite.Open(IMG_CUTSCENE_3);
 	sprite.freeMe();
 	blank.freeMe();
 
 	cout << "Bye, LUP!" << endl;
 }
 
-void CutScene1::Update(float dt) {
-	timer.Update(dt);
+/*
+  Updates the frame on screen
+*/
+void CutScene1::Update(float deltaTime) {
+	timer.Update(deltaTime);
 
 	if (!popRequested) {
 		if (timer.Get() > 1 && showBlank) {
@@ -59,15 +67,15 @@ void CutScene1::Update(float dt) {
 
 			switch (frame) {
 			case 1:
-				sprite.Open("img/cut-scene-final/Cutscene_Final_1.png");
+				sprite.Open(IMG_CUTSCENE_1);
 				timer.Restart();
 				break;
 			case 2:
-				sprite.Open("img/cut-scene-final/Cutscene_Final_2.png");
+				sprite.Open(IMG_CUTSCENE_2);
 				timer.Restart();
 				break;
 			case 3:
-				sprite.Open("img/cut-scene-final/Cutscene_Final_3.png");
+				sprite.Open(IMG_CUTSCENE_3);
 				timer.Restart();
 				break;
 			default:
@@ -75,19 +83,26 @@ void CutScene1::Update(float dt) {
 				break;
 			}
 		}
-
+    
+/* 
+  In case the user press the space key, or the frame count reach the end, the
+variable popRequested and quitRequested are set as True, so the CutScene ends
+and the game goes to the menu screen 
+*/
 		popRequested = InputManager::GetInstance().KeyPress(SDLK_SPACE)
-				|| frame >= NUMBER_FRAMES_ANIMATION;
+			             || frame >= NUMBER_FRAMES_ANIMATION;
 		quitRequested = popRequested;
 	}
 }
 
+/*
+  Method to render the sprites of the story
+*/
 void CutScene1::Render() {
 	if (!popRequested) {
 		if (showBlank) {
 			blank.Render(0, 0);
 		} else {
-			//selector[frame - 1]->Render(0, 0);
 			sprite.Render(0, 0);
 		}
 	}
@@ -95,21 +110,9 @@ void CutScene1::Render() {
 
 void CutScene1::Pause() {
 	song.Stop();
-	/*for (unsigned int i = 300; i < selector.size() - 1; i++) {
-		selector[i]->freeMe();
-	}
-	selector.clear();*/
 	blank.freeMe();
 }
 
 void CutScene1::Resume() {
-	/*for (unsigned int i = 0; i < NUMBER_FRAMES_ANIMATION; i++) {
-		std::stringstream sstm;
-		sstm << "img/cut-scene-final/Cutscene_Final_" << i << ".png";
-		std::string frameFile = sstm.str();
-
-		selector.emplace_back(new Sprite(frameFile));
-	}*/
-
 	song.Play(1);
 }

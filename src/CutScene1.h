@@ -20,18 +20,17 @@ class CutScene1: public State {
 public:
 	CutScene1();
 	virtual ~CutScene1();
-	void Update(float dt);
+	void Update(float deltaTime);
 	void Render();
 	void Pause();
 	void Resume();
 private:
-	Sprite blank;
-	Sprite sprite;
-	//std::vector<Sprite*> selector;
-	Timer timer;
-	Music song;
-	unsigned int frame;
-	bool showBlank;
+	Sprite blank;         /* Sprite of a blank screen                         */  
+	Sprite sprite;        /* Sprite to show the frames of the story           */
+	Timer timer;          /* Variable to keep track of the time passed        */
+	Music song;           /* Backgroung song                                  */
+	unsigned int frame;   /* Integer to reference the frame it's showing      */
+	bool showBlank;       /* Boolean to define if its to use the blank sprite */
 };
 
-#endif /* SRC_CUTSCENE_H_ */
+#endif

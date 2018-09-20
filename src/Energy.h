@@ -1,14 +1,16 @@
-/*
- * Energy.h
- *
- *  Created on: 28/06/2015
- *      Author: Vitor
- */
+/*********************************************************
+       * File: Energy.h
+       * Purpose: "Energy" class declaration
+*********************************************************/
 
 #ifndef SRC_Energy_H_
 #define SRC_Energy_H_
 
 #include "GameObject.h"
+/*
+This class controls the energy of the character used to perform actions of
+attack.
+*/
 
 class Energy : public GameObject {
 public:
@@ -28,4 +30,4 @@ private:
 		bool willDie;
 };
 
-#endif /* SRC_Energy_H_ */
+#endif

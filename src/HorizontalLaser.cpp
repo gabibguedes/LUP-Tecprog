@@ -54,6 +54,9 @@ HorizontalLaser::~HorizontalLaser() {}
 void HorizontalLaser::Update(float deltaTimeCalculator){
 	somaRotation = planet->somaRotation;
 	rotation += somaRotation;
+	/*...somaRotation is out of the established standard
+	because it is defined in a class that has not
+	yet been refactored.*/
 
 		float arc = rotation * ANGLE; /* rotation in radians */
 		box.setX(planet->box.getCenterX() + ((planet->box.getW() / 2 - 

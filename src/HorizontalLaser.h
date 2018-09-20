@@ -21,15 +21,14 @@ public:
 	void Update(float deltaTimeCalculator);
 	void Render();
 	bool IsDead();
-	Sprite getSprite();
-	void NotifyCollision(GameObject&);
+	Sprite getSprite(); /* Get object Sprite */
 	bool Is(string type);
 private:
 	Sprite sp; /* Laser sprite */
 	GameObject* planet; /* Object where the laser will be included */
 	float initialHeight;
-	Timer timer;
-	int loadedFrame;
+	Timer timer; /* Time counter */
+	int loadedFrame; 
 	int frameInit;
 
 };

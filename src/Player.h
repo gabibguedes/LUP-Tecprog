@@ -1,3 +1,8 @@
+/*********************************************************
+  * File: Player.h
+  * Purpose: Player class declaration
+*********************************************************/
+
 #ifndef SRC_PLAYER_H_
 #define SRC_PLAYER_H_
 
@@ -10,6 +15,11 @@
 
 enum Jumping { STAND, JUMP, DJUMP };
 
+/*
+  This class establish the player and all it's characteristics, as the amount of
+Energy, the resources, it's Sprite, and all that is necessary for his pourpouse
+on the game 
+*/
 class Player : public GameObject{
 public:
 	Player(float x,float y,GameObject* planet);
@@ -35,22 +45,21 @@ public:
 	Timer deathAnimation;
 
 private:
-	Sprite body;
-	Point speed;
-	int hp;
-	int xp;
-	Timer dmgCD;
-	Timer knockback;
-	Jumping jumpState;
-	int jumpY;
-	//int yPlaneta;
-	int jumped;
-	Facing kbDirection;
-	int c;
-	int qntEnergia;
-	Timer energiaCD;
+	Sprite body;          /* Player's character                                */
+	Point speed;          /* The speed it walks                                */
+	int hp;               /* Health points                                     */
+	int xp;               /* Experience points                                 */
+	Timer dmgCD;          /* Damage time??                                     */
+	Timer knockback;      /* Timer to count the time the player is pushed back */
+	Jumping jumpState;    /* The position and state the jump of the player is  */
+	int jumpY;            /* The height of the jump                            */
+	int jumped;           /* ??????????                                        */
+	Facing kbDirection;   /* ??????????                                        */
+	int c;                /* ??????????                                        */
+	int qntEnergia;       /* Amount of energy                                  */
+	Timer energiaCD;      /* ??????????                                        */
 
 };
 
 
-#endif /* SRC_PLAYER_H_ */
+#endif

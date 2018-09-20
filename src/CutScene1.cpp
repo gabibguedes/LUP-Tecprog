@@ -1,5 +1,10 @@
-#include "CutScene1.h"
+/*********************************************************
+  * File: CutScene1.cpp
+  * Purpose: Implementation of the story line before opening
+	the game menu 
+*********************************************************/
 
+#include "CutScene1.h"
 #include <SDL_keycode.h>
 #include <iostream>
 

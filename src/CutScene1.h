@@ -1,3 +1,8 @@
+ /*********************************************************
+  * File: CutScene1.h
+  * Purpose: "CutScene1" class declaration
+ *********************************************************/
+
 #ifndef SRC_CUTSCENE_H_
 #define SRC_CUTSCENE_H_
 
@@ -5,6 +10,11 @@
 #include "Sprite.h"
 #include "State.h"
 #include "Timer.h"
+
+/*
+This class represents the change of scenery in the game, considering the images,
+the music and all the other changes it comes with it.
+*/
 
 class CutScene1: public State {
 public:

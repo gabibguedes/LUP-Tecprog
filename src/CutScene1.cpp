@@ -10,10 +10,12 @@
 
 #include "InputManager.h"
 
+//Frame images:
 #define IMG_CUTSCENE_0 "img/cut-scene-final/Cutscene_Final_0.png"
 #define IMG_CUTSCENE_1 "img/cut-scene-final/Cutscene_Final_1.png"
 #define IMG_CUTSCENE_2 "img/cut-scene-final/Cutscene_Final_2.png"
 #define IMG_CUTSCENE_3 "img/cut-scene-final/Cutscene_Final_3.png"
+
 #define IMG_BLANK "img/blank.png"
 
 #define AUDIO "audio/finalSong.ogg"
@@ -21,9 +23,8 @@
 const unsigned int NUMBER_FRAMES_ANIMATION = 4;
 const float FRAME_TIME_ANIMATION = 5;
 
-/*
-  Creator method, initialize the variables
-*/
+
+//  Creator method, initialize the variables
 CutScene1::CutScene1(): blank(IMG_BLANK),
                         sprite(IMG_CUTSCENE_0),
                         timer(), song(AUDIO){
@@ -35,9 +36,8 @@ CutScene1::CutScene1(): blank(IMG_BLANK),
 	song.Play(1);
 }
 
-/*
-  Destructor method, releases the alocated memory
-*/
+
+//  Destructor method, releases the alocated memory
 CutScene1::~CutScene1() {
 	song.Stop();
 	sprite.Open(IMG_CUTSCENE_0);
@@ -53,9 +53,8 @@ CutScene1::~CutScene1() {
 	cout << "Bye, LUP!" << endl;
 }
 
-/*
-  Updates the frame on screen
-*/
+
+// Updates the frame on screen
 void CutScene1::Update(float deltaTime) {
 	timer.Update(deltaTime);
 
@@ -86,8 +85,7 @@ void CutScene1::Update(float deltaTime) {
     
 /* 
   In case the user press the space key, or the frame count reach the end, the
-variable popRequested and quitRequested are set as True, so the CutScene ends
-and the game goes to the menu screen 
+variable popRequested and quitRequested are set as True.
 */
 		popRequested = InputManager::GetInstance().KeyPress(SDLK_SPACE)
 			             || frame >= NUMBER_FRAMES_ANIMATION;
@@ -95,9 +93,8 @@ and the game goes to the menu screen
 	}
 }
 
-/*
-  Method to render the sprites of the story
-*/
+
+//  Method to render the sprites of the story
 void CutScene1::Render() {
 	if (!popRequested) {
 		if (showBlank) {

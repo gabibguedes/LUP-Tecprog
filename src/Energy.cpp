@@ -1,9 +1,7 @@
-/*
- * Energy.cpp
- *
- *  Created on: 28/06/2015
- *      Author: Vitor
- */
+/*********************************************************
+       * File: Energy.h
+       * Purpose: "Energy" class implementation
+*********************************************************/
 
 #include "Energy.h"
 #include "Camera.h"
@@ -13,6 +11,7 @@
 #define PI 3.14159265359
 #define HALF_TURN 180
 #define QUARTER_OF_A_TURN 90
+
 
 Energy::Energy(float x,float y,GameObject* planet, float rotation,float initialHeight, string file,int numberOfFrames):sprite(file,0.3,1,numberOfFrames) {
 	this->planet = planet;
@@ -32,12 +31,15 @@ Energy::Energy(float x,float y,GameObject* planet, float rotation,float initialH
 }
 
 Energy::~Energy() {
-	//delete(&sprite);
+
 }
 
 void Energy::Update(float deltaTime){
 	somaRotation = planet->somaRotation;
 	rotation += somaRotation;
+	/*...somaRotation is out of the established standard
+	because it is defined in a class that has not
+	yet been refactored.*/
 
 		float angle = rotation*PI/HALF_TURN;
 		box.setX(planet->box.getCenterX() + ((planet->box.getW()/2 - 300 + initialHeight)*cos(angle)) - (box.getW()/2));
@@ -45,6 +47,7 @@ void Energy::Update(float deltaTime){
 		sprite.Update(deltaTime);
 		if(willDie)
 			dead = true;
+
 }
 
 void Energy::Render(){

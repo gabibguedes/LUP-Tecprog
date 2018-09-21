@@ -1,9 +1,7 @@
-/*
- * Minion.h
- *
- *  Created on: 15/04/2015
- *      Author: Vitor
- */
+/*********************************************************
+       * File: Minion.h
+       * Purpose: "Minion" class declaration
+*********************************************************/
 
 #ifndef SRC_MINION_H_
 #define SRC_MINION_H_
@@ -11,11 +9,16 @@
 #include "Point.h"
 #include "Bullet.h"
 
+/*
+This class controls the energy of the character used to perform actions of
+attack.
+*/
+
 class Minion: public GameObject{
 public:
-	Minion(GameObject* minionCenter, float arcOffset);
+	Minion(GameObject* minionCenter, float arcOffSet);
 	~Minion(){}
-	void Update(float dt);
+	void Update(float deltaTime);
 	void Render();
 	bool IsDead();
 	void Shoot(Point pos);
@@ -24,10 +27,10 @@ public:
 	void NotifyCollision(GameObject&);
 private:
 	GameObject* center;
-	Sprite sp;
+	Sprite sprite;
 	float arc;
 };
 
 
 
-#endif /* SRC_MINION_H_ */
+#endif

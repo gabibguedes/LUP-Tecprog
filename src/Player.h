@@ -55,7 +55,7 @@ private:
 	Jumping jumpState;    // The position and state the jump of the player is  
 	int jumpY;            // The height of the jump                            
 	int jumped;           // How much the player has jumped                                        
-	Facing kbDirection;   // Direction of player
+	Facing kbDirection;   // Direction wich player is knocked back
 	int center;           // Marks the center
 	int amountOfEnergy;   // Saves the player energy status           
 	Timer energyCD;       // Time between energies

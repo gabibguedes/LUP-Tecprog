@@ -181,15 +181,15 @@ void Player::Update(float deltaTime) {
 		}
     
     // Verifies the height of the next obstacle
-		int proxAltura = planet->getAltura(planet->rotation + somaRotation);
+		int nextHeight = planet->getAltura(planet->rotation + somaRotation);
 		
     //Verifies how much higher it is
-		int difAltura = proxAltura - box.getY();
+		int heightDifference = nextHeight - box.getY();
 
     // Verifies if the player can jump
-		if(planet->podeSubir(planet->rotation + somaRotation) || difAltura >= 0){
+		if(planet->podeSubir(planet->rotation + somaRotation) || heightDifference >= 0){
 			if(jumpState == STAND && box.getY() == jumpY){
-				box.setY(box.getY() + difAltura);
+				box.setY(box.getY() + heightDifference);
       }
 		}else{
 			somaRotation = 0;

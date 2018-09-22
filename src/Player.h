@@ -25,7 +25,7 @@ class Player : public GameObject{
 public:
 	Player(float x,float y,GameObject* planet);
 	~Player();
-	void Update(float dt);
+	void Update(float deltaTime);
 	void Render();
 	bool IsDead();
 	Sprite getSprite();
@@ -37,16 +37,16 @@ public:
 	int GetSpecial();
 	void IncXp(int xp);
 	bool GetEnergyUpdate();
-	bool energyUpdate;
+	bool energyUpdate;        // Should update the player's energy
 	void Die();
-	int loopStart;
-	int loopEnd;
-	GameObject* planet;
-	bool deveMudarDeFase;
-	Timer deathAnimation;
+	int loopStart;            // Marks the start of the loop
+	int loopEnd;              // Marks the end of the loop
+	GameObject* planet;       // The planet of the level
+	bool shouldChangeLevel;   // Variable confirm if it's time to change levels
+	Timer deathAnimation;     // Marks the time of the death animation
 
 private:
-	Sprite body;          // Player's characte
+	Sprite body;          // Player's character
 	Point speed;          // The speed it walk
 	int hp;               // Health points
 	int xp;               // Experience points                                 
@@ -55,10 +55,10 @@ private:
 	Jumping jumpState;    // The position and state the jump of the player is  
 	int jumpY;            // The height of the jump                            
 	int jumped;           // How much the player has jumped                                        
-	Facing kbDirection;   // ???                    
-	int c;                // center -----> REFATORAR
-	int qntEnergia;       // Amount of energy -------> REFATORAR           
-	Timer energiaCD;      // Time between energies ----->REFATORAR
+	Facing kbDirection;   // Direction of player
+	int center;           // Marks the center
+	int amountOfEnergy;   // Saves the player energy status           
+	Timer energyCD;       // Time between energies
 
 };
 

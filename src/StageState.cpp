@@ -328,9 +328,9 @@ void StageState::Update(float deltaTime) {
 	userInterface.Update(deltaTime);
 
 	//verifica fim da fase
-	if (Player::player->deveMudarDeFase) {
+	if (Player::player->shouldChangeLevel) {
 		popRequested = true;
-		Player::player->deveMudarDeFase = false;
+		Player::player->shouldChangeLevel = false;
 	}
 }
 

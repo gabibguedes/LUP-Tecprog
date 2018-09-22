@@ -333,9 +333,9 @@ void FinalState::Update(float dt) {
 	ui.Update(dt);
 
 	//verifica fim da fase
-	if (Player::player->deveMudarDeFase) {
+	if (Player::player->shouldChangeLevel) {
 		popRequested = true;
-		Player::player->deveMudarDeFase = false;
+		Player::player->shouldChangeLevel = false;
 	}
 }
 

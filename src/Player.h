@@ -1,3 +1,8 @@
+/*********************************************************
+  * File: Player.h
+  * Purpose: Player class declaration
+*********************************************************/
+
 #ifndef SRC_PLAYER_H_
 #define SRC_PLAYER_H_
 
@@ -8,13 +13,19 @@
 #include "EndState.h"
 #include "StateData.h"
 
+//Enumerates the jumping states of the player
 enum Jumping { STAND, JUMP, DJUMP };
 
+/*
+  This class establish the player and all it's characteristics, as the amount of
+Energy, the resources, it's Sprite, and all that is necessary for his pourpouse
+on the game 
+*/
 class Player : public GameObject{
 public:
 	Player(float x,float y,GameObject* planet);
 	~Player();
-	void Update(float dt);
+	void Update(float deltaTime);
 	void Render();
 	bool IsDead();
 	Sprite getSprite();
@@ -26,31 +37,30 @@ public:
 	int GetSpecial();
 	void IncXp(int xp);
 	bool GetEnergyUpdate();
-	bool energyUpdate;
+	bool energyUpdate;        // Should update the player's energy
 	void Die();
-	int loopStart;
-	int loopEnd;
-	GameObject* planet;
-	bool deveMudarDeFase;
-	Timer deathAnimation;
+	int loopStart;            // Marks the start of the loop
+	int loopEnd;              // Marks the end of the loop
+	GameObject* planet;       // The planet of the level
+	bool shouldChangeLevel;   // Variable confirm if it's time to change levels
+	Timer deathAnimation;     // Marks the time of the death animation
 
 private:
-	Sprite body;
-	Point speed;
-	int hp;
-	int xp;
-	Timer dmgCD;
-	Timer knockback;
-	Jumping jumpState;
-	int jumpY;
-	//int yPlaneta;
-	int jumped;
-	Facing kbDirection;
-	int c;
-	int qntEnergia;
-	Timer energiaCD;
+	Sprite body;          // Player's character
+	Point speed;          // The speed it walk
+	int hp;               // Health points
+	int xp;               // Experience points                                 
+	Timer dmgCD;          // "Damage cool down" time between demages                                     
+	Timer knockback;      // Timer to count the time the player is pushed back 
+	Jumping jumpState;    // The position and state the jump of the player is  
+	int jumpY;            // The height of the jump                            
+	int jumped;           // How much the player has jumped                                        
+	Facing kbDirection;   // Direction wich player is knocked back
+	int center;           // Marks the center
+	int amountOfEnergy;   // Saves the player energy status           
+	Timer energyCD;       // Time between energies
 
 };
 
 
-#endif /* SRC_PLAYER_H_ */
+#endif

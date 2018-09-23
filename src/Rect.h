@@ -1,3 +1,8 @@
+/******************************************
+ * File: Rect.h
+ * Purpose: this class represents a
+ * geometric objects (rectangle)
+ *****************************************/
 #ifndef SRC_RECT_H_
 #define SRC_RECT_H_
 
@@ -5,10 +10,10 @@
 
 class Rect {
 public:
-	float x;
-	float y;
-	float w;
-	float h;
+	float x; // point on the x-axis
+	float y; // point on the y-axis 
+	float w; // point on the w-axis (depth)
+	float h; // height point
 
 	Rect();
 	Rect(float aux_x, float aux_y, float aux_w, float aux_h);

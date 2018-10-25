@@ -8,6 +8,7 @@
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <assert.h>
 
 #include "Bullet.h"
 #include "Game.h"
@@ -70,8 +71,10 @@ void Enemy3::Update(float deltaTime) {
 
 	if (knockback.Get() < 0.3) { 
 		if (kbDirection == LEFT)
+			assert(typeid(rotation) == typeid(deltaTime));
 			rotation -= 18*deltaTime;
 		else
+			assert(typeid(rotation) == typeid(deltaTime)); 
 			rotation += 18*deltaTime;
 
 		sp.Update(deltaTime);

@@ -7,6 +7,13 @@ Rect::Rect() {
 	w = 0;
 }
 
+/**
+ * Construct of Rect
+ * @param aux_x, initial value of the location of the object on the x-axis (type real)
+ * @param aux_y, initial value of the location of the object on the y-axis (type real)
+ * @param aux_w, initial value of the location of the object on the w-axis (type real)
+ * @param aux_h, height value
+*/
 Rect::Rect(float aux_x, float aux_y, float aux_w, float aux_h) {
 	x = aux_x;
 	y = aux_y;

@@ -1,3 +1,7 @@
+/*********************************************************
+   * File: Resources.cpp
+   * Purpose: Implementation of Resources Class
+*********************************************************/
 #include "Resources.h"
 #include "Game.h"
 

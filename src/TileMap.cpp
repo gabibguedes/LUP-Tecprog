@@ -1,10 +1,7 @@
-/*
- * TileMap.cpp
- *
- *  Created on: 01/04/2015
- *      Author: Vitor
- */
-
+/*********************************************************
+   * File: TileMap.cpp
+   * Purpose: TileMap class implementation
+*********************************************************/
 #include "TileMap.h"
 #include "Camera.h"
 
@@ -32,7 +29,7 @@ void TileMap::SetTileSet(TileSet* tileSet){
 
 int& TileMap::At(int x, int y, int z = 0){
 	if(x>mapWidth || y>mapHeight || z > mapDepth){
-		cout << "Indice errado!!" << endl;
+		cout << "Wrong index!!" << endl;                                            
 		exit(1);
 	}
 	int aux = (z*(mapWidth*mapHeight)) + (y*mapWidth) + x;
@@ -44,7 +41,9 @@ void TileMap::RenderLayer(int layer, int cameraX = 0, int cameraY = 0){
 		for(int j=0;j<mapWidth;j++){
 			int aux = At(j,i,layer);
 			if(aux >= 0){
-				tileSet->Render(aux,j*tileSet->GetTileWidth() + cameraX*(layer+1) ,i*tileSet->GetTileHeight() + cameraY*(layer+1) );
+        float positionX = j*tileSet->GetTileWidth() + cameraX*(layer+1);        
+        float positionY = i*tileSet->GetTileHeight() + cameraY*(layer+1);       
+				tileSet->Render(aux, positionX ,positionY);                             
 			}
 		}
 	}

@@ -11,7 +11,9 @@ SDL_Texture* Resources::GetImage(string file) {
 		SDL_Texture* texture = IMG_LoadTexture(
 				(Game::GetInstance().GetRenderer()), file.c_str());
 		imageTable.emplace(file, texture);
-	}
+	} else {                                                                      
+    // Nothing to do
+  }
 	return imageTable.find(file)->second;
 }
 
@@ -19,7 +21,9 @@ Mix_Music* Resources::GetMusic(string file) {
 	if (musicTable.find(file) == musicTable.end()) {
 		Mix_Music* music = Mix_LoadMUS(file.c_str());
 		musicTable.emplace(file, music);
-	}
+	} else {                                                                      
+    // Nothing to do
+  }
 	return musicTable.find(file)->second;
 }
 
@@ -27,26 +31,30 @@ Mix_Chunk* Resources::GetChunk(string file) {
 	if (chunkTable.find(file) == chunkTable.end()) {
 		Mix_Chunk* chunk = Mix_LoadWAV(file.c_str());
 		chunkTable.emplace(file, chunk);
-	}
+	} else {                                                                      
+    // Nothing to do
+  }
 	return chunkTable.find(file)->second;
 }
 
 TTF_Font* Resources::GetFont(string file, int fontsize) {
 	std::stringstream sstm;
 	sstm << file << fontsize;
-	string chave = sstm.str();
-	if (fontTable.find(chave) == fontTable.end()) {
+	string key = sstm.str();
+	if (fontTable.find(key) == fontTable.end()) {
 		TTF_Font* font = TTF_OpenFont(file.c_str(), fontsize);
 
-		if (font == NULL) {
+		if (font != NULL) {                                                         
+			fontTable.emplace(key, font);
+		} else {
 			cout
 					<< "Could not open the required font file properly! Font file required: "
 					<< file << endl;
-		} else {
-			fontTable.emplace(chave, font);
 		}
-	}
-	return fontTable.find(chave)->second;
+	} else {                                                                      
+    // Nothing to do
+  }
+	return fontTable.find(key)->second;
 }
 
 void Resources::ClearImages() {
@@ -80,5 +88,7 @@ void Resources::ClearFont() {
 void Resources::removeImage(string file) {
 	if (imageTable.find(file) != imageTable.end()) {
 		SDL_DestroyTexture(imageTable.find(file)->second);
-	}
+	}else{                                                                        
+    //Nothing to do
+  }
 }

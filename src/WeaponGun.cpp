@@ -114,7 +114,7 @@ void WeaponGun::Render() {
 		center = -25;
 	else
 		center = 25;
-
+ 
 	sprite.Render(box.getX() + Camera::pos.getX() + center,
 			box.getY() + Camera::pos.getY());
 }

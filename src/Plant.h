@@ -1,5 +1,5 @@
 /*
- * Planta.h
+ * Plant.h
  *
  *  Created on: 20/06/2015
  *      Author: Vitor
@@ -10,10 +10,10 @@
 
 #include "GameObject.h"
 
-class Planta: public GameObject {
+class Plant: public GameObject {
 public:
-	Planta(float x,float y,GameObject* planet, float rotation,float alturaInicial, string file);
-	~Planta();
+	Plant(float x,float y,GameObject* planet, float rotation,float initialHeight, string file); /*T28*/
+	~Plant();
 	void Update(float dt);
 	void Render();
 	bool IsDead();
@@ -23,7 +23,7 @@ public:
 private:
 	Sprite sp;
 	GameObject* planet;
-	float alturaInicial;
+	float initialHeight;
 	bool dead;
 };
 

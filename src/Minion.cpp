@@ -10,6 +10,7 @@
 #define PI 3.14159265359
 #define HALF_TURN 180
 
+assert(minionCenter != NULL); /*T17*/ /*T18*/
 Minion::Minion(GameObject* minionCenter,float arcOffSet) : sprite("img/minion.png"){
 
 	center = minionCenter;
@@ -20,6 +21,7 @@ Minion::Minion(GameObject* minionCenter,float arcOffSet) : sprite("img/minion.pn
 	box.setX(center->box.getCenterX() + (200*cos(arc)) - (box.getW()/2));
 	box.setY(center->box.getCenterY()  + (200*sin(arc)) - (box.getH()/2));
 	float scale = (((rand())%50)+100)/100.0;
+	assert(scale <= 100); /*T17*/
 	sprite.SetScaleX(scale);
 	sprite.SetScaleY(scale);
 }
@@ -28,6 +30,7 @@ Minion::Minion(GameObject* minionCenter,float arcOffSet) : sprite("img/minion.pn
 based on the movement pattern and the previous position*/
 void Minion::Update(float deltaTime){
 	arc += PI/10*deltaTime;
+	assert(arc >= 0); /*T17*/
 	rotation = (arc*HALF_TURN/PI)-HALF_TURN;
 	float x = center->box.getCenterX() + (100*cos(arc)) - (box.getW()/2);
 	float y = center->box.getCenterY()  + (100*sin(arc)) - (box.getH()/2);
@@ -53,6 +56,7 @@ void Minion::Shoot(Point pos){
 }
 
 Sprite Minion::getSprite(){
+	assert(sprite != NULL); /*T17*/
 	return sprite;
 }
 

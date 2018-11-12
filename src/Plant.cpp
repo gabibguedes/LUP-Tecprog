@@ -1,5 +1,5 @@
 /*
- * Planta.cpp
+ * Plant.cpp
  *
  *  Created on: 03/06/2015
  *      Author: Vitor
@@ -10,48 +10,51 @@
 #include "Game.h"
 #include "InputManager.h"
 
-Planta::Planta(float x,float y,GameObject* planet, float rotation,float alturaInicial, string file):sp(file) {
+const unsigned int PI = 3.14159265359;  /*T25*/
+const unsigned int HALF_TURN = 180;  /*T25*/
+const unsigned int QUARTER_OF_A_TURN = 90;  /*T25*/
+
+Plant::Plant(float x,float y,GameObject* planet, float rotation,float initialHeight, string file):sp(file) { /*T25*/
 	this->planet = planet;
 
 	box.setH(sp.GetHeight());
 	box.setW(sp.GetWidth());
 	this->rotation = rotation;
-	this->alturaInicial = alturaInicial;
-	float arc = rotation*3.1415/180;
+	this->initialHeight =PI/HALF_TURN; /*T28*/
 	box.setX(planet->box.getCenterX() + ((planet->box.getW()/2 + planet->box.getCenterY() + alturaInicial)*cos(arc)) - (box.getW()/2));
 	box.setY(planet->box.getCenterY()  + ((planet->box.getH()/2 + planet->box.getCenterY() + alturaInicial)*sin(arc)) - (box.getH()/2));
 	dead = false;
 
 }
 
-Planta::~Planta() {
+Plant::~Plant() { /*T28*/
 	//delete(&sp);
 }
 
-void Planta::Update(float dt){
-	somaRotation = planet->somaRotation;
-	rotation += somaRotation;
+void Plant::Update(float dt){
+	somaRotation = planet->sumRotation; /*T28*/
+	rotation += sumRotation; /*T28	*/
 
-		float arc = rotation*3.1415/180;
+		float arc = rotation*PI/HALF_TURN; /*T28*/
 		box.setX(planet->box.getCenterX() + ((planet->box.getW()/2 - 300 + alturaInicial)*cos(arc)) - (box.getW()/2));
 		box.setY(planet->box.getCenterY()  + ((planet->box.getH()/2 - 300 + alturaInicial)*sin(arc)) - (box.getH()/2));
 }
 
-void Planta::Render(){
-	sp.Render(box.getX() + Camera::pos.getX(),box.getY() +  Camera::pos.getY(),rotation + 90);
+void Plant::Render(){ /*T28*/
+	sp.Render(box.getX() + Camera::pos.getX(),box.getY() + Camera::pos.getY(),rotation + QUARTER_OF_A_TURN);
 }
 
-bool Planta::IsDead(){
+bool Plant::IsDead(){ /*T28*/
 	return dead;
 }
 
-Sprite Planta::getSprite(){
+Sprite Plant::getSprite(){ /*T28*/
 	return sp;
 }
 
-void Planta::NotifyCollision(GameObject& other){
+void Plant::NotifyCollision(GameObject& other){
 }
 
-bool Planta::Is(string type){
-	return (type == "Planta");
+bool Plant::Is(string type){
+	return (type == "Plant"); /*T28*/
 }

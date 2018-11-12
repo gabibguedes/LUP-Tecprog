@@ -39,12 +39,18 @@ int& TileMap::At(int x, int y, int z = 0){
 	return tileMatrix[aux];
 }
 
-void TileMap::RenderLayer(int layer, int cameraX = 0, int cameraY = 0){
-	for(int i=0;i<mapHeight;i++){
-		for(int j=0;j<mapWidth;j++){
-			int aux = At(j,i,layer);
+void TileMap::RenderLayer(int layer, int cameraX = 0, int cameraY = 0){ /*22*/
+	for(int i = 0; i < mapHeight; i++){
+		for(int j = 0; j < mapWidth; j++){
+			int aux = At(j, i, layer);
+
 			if(aux >= 0){
-				tileSet->Render(aux,j*tileSet->GetTileWidth() + cameraX*(layer+1) ,i*tileSet->GetTileHeight() + cameraY*(layer+1) );
+				unsigned int index = aux;
+				float xPosition = j*tileSet->GetTileWidth() + cameraX*(layer+1);
+				float yPosition = i*tileSet->GetTileHeight() + cameraY*(layer+1);
+				tileSet->Render(index, xPosition, yPosition);
+			} else {
+				//Nothing happens
 			}
 		}
 	}
